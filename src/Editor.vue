@@ -48,7 +48,7 @@ export default {
         file_input_name: "image",
         imgur: true,
         toolbar: {
-          buttons: ["bold", "italic", "quote", "h1", "h2", "h3", "h4", "h5", "anchor" ]
+          buttons: ["bold", "italic", "quote","h2", "h3", "h4", "h5", "anchor" ]
         }
       },
       hasContent: false,

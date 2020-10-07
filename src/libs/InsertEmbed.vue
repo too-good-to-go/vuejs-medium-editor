@@ -20,8 +20,9 @@
                     v-on:imageClick="imageClickHandler"
                     title="Insert Image"
                 ></insert-image>
-                <insert-gist :editor="editor"
-                    v-on:onChange="onChange" :insert="insert" title="Insert gist"></insert-gist>
+                <insert-video :editor="editor"
+                              :editorRef="editorRef"
+                    v-on:onChange="onChange" :insert="insert" title="Insert video"></insert-video>
             </div>
         </div>
         <image-position
@@ -33,7 +34,7 @@
 
 <script>
 import InsertImage from './Embed/InsertImage';
-import InsertGist from './Embed/InsertGist';
+import InsertVideo from './Embed/InsertVideo';
 import ImagePosition from './Embed/ImagePosition';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
@@ -44,7 +45,7 @@ export default {
     components: {
         FontAwesomeIcon,
         InsertImage,
-        InsertGist,
+        InsertVideo,
         ImagePosition
     },
     data() {
@@ -63,6 +64,7 @@ export default {
             handler: {
                 currentLine: null,
                 currentImg: null,
+              currentVideo: null,
                 currentSize: 'is-normal',
                 position: {
                     top: '0'
@@ -97,13 +99,13 @@ export default {
             const focused = this.editor.getFocusedElement()
             if(!focused) return;
 
-            const editorImages = focused.getElementsByClassName('editor-image-description')
+            const editorImages = focused.getElementsByClassName('editor-media-description')
             _.map(editorImages, (elm) => {
                 const description = elm.innerHTML.trim()
                 if(!description || description == "<br>") {
-                    elm.className = 'editor-image-description is-empty'
+                    elm.className = 'editor-media-description is-empty'
                 } else {
-                    elm.className = 'editor-image-description'
+                    elm.className = 'editor-media-description'
                 }
             })
         },
@@ -115,13 +117,13 @@ export default {
                 const focused = this.editor.getSelectedParentElement()
                 const nextElm = focused.nextElementSibling
                 const prevElm = focused.previousElementSibling
-                if(nextElm && prevElm && nextElm.className.indexOf('editor-image-description') > -1 && prevElm.className.indexOf('editor-image') > -1) {
+                if(nextElm && prevElm && nextElm.className.indexOf('editor-media-description') > -1 && prevElm.className.indexOf('editor-media') > -1) {
                     nextElm.parentNode.insertBefore(nextElm, focused);
                 }
             }
             this.handler.isShow = false
-            if(e.target.className.indexOf('editor-image-description') <= -1) {
-                const editorImages = this.editor.getFocusedElement().getElementsByClassName('editor-image')
+            if(e.target.className.indexOf('editor-media-description') <= -1) {
+                const editorImages = this.editor.getFocusedElement().getElementsByClassName('editor-media')
                 _.map(editorImages, (imgElm) => {
                     imgElm.className = imgElm.className.replace('is-focus', '')
                 })
