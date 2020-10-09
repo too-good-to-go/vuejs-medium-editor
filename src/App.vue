@@ -25,6 +25,22 @@ export default {
           <div class="editor-media">
                         <iframe src="https://www.youtube.com/embed/g3p3nMiwl7M" frameborder="0" allowfullscreen></iframe>
           </div>
+          <table>
+          <thead>
+
+</thead>
+<tbody>
+nono
+<tr><td>
+no1
+</td>
+<td>34</td></tr>
+<tr><td>
+no2
+</td>
+<td>36</td></tr>
+</tbody>
+</table>
           <p>On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of wills</p>`,
       options: {
         uploadUrl: "https://api.imgur.com/3/image",
@@ -41,15 +57,7 @@ export default {
               contentDefault: '<b>🔗</b>',
               contentFA: '<i class="fa fa-link"></i>',
           },
-          "underline", "quote", "h2", "h3", "h4",
-          {
-              name: 'pre',
-              action: 'append-pre',
-              aria: 'code highlight',
-              tagNames: ['pre'],
-              contentDefault: '<b><\\></b>',
-              contentFA: '<i class="fa fa-code fa-lg"></i>'
-          },
+           "quote",  "h2", "h3",
           'unorderedlist', 'orderedlist',]
         }
       }
@@ -60,10 +68,10 @@ export default {
   },
   methods: {
     onChange() {
-        console.log(this.content)
+       // console.log(this.content)
     },
     uploadCallback(url) {
-        console.log("uploaded url", url)
+        //console.log("uploaded url", url)
     }
   },
   mounted(){

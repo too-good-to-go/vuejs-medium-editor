@@ -1,28 +1,28 @@
 <template>
-    <div>
-        <!-- Editor Mode -->
-        <div class="medium-editor-container" v-if="!readOnly">
-            <insert-embed v-if="editor"
-                :uploadUrl="options.uploadUrl"
-                :uploadUrlHeader="options.uploadUrlHeader"
-                :file_input_name="options.file_input_name"
-                :imgur_bool="options.imgur"
-                :onChange="triggerChange"
-                :editorRef="$refs.editor"
-                :editor="editor"
-                v-on:uploaded="uploadedCallback"></insert-embed>
-            <list-handler v-if="editor"
-                :editor="editor"
-                :onChange="triggerChange"></list-handler>
-            <div class="editor"
-                v-bind:class="editorClass"
-                v-html="prefill"
-                ref="editor">
-            </div>
-        </div>
-        <!-- Read Only Mode -->
-        <read-mode v-if="readOnly" :content="prefill"></read-mode>
+  <div>
+    <!-- Editor Mode -->
+    <div class="medium-editor-container" v-if="!readOnly">
+      <insert-embed v-if="editor"
+                    :uploadUrl="options.uploadUrl"
+                    :uploadUrlHeader="options.uploadUrlHeader"
+                    :file_input_name="options.file_input_name"
+                    :imgur_bool="options.imgur"
+                    :onChange="triggerChange"
+                    :editorRef="$refs.editor"
+                    :editor="editor"
+                    v-on:uploaded="uploadedCallback"></insert-embed>
+      <list-handler v-if="editor"
+                    :editor="editor"
+                    :onChange="triggerChange"></list-handler>
+      <div class="editor"
+           v-bind:class="editorClass"
+           v-html="prefill"
+           ref="editor">
+      </div>
     </div>
+    <!-- Read Only Mode -->
+    <read-mode v-if="readOnly" :content="prefill"></read-mode>
+  </div>
 </template>
 
 <script>
@@ -31,7 +31,6 @@ import InsertEmbed from './libs/InsertEmbed';
 import ListHandler from './libs/ListHandler';
 import ReadMode from './libs/ReadMode';
 import _ from 'underscore';
-import hljs from 'highlight.js';
 
 export default {
   name: "medium-editor",
@@ -48,11 +47,11 @@ export default {
         file_input_name: "image",
         imgur: true,
         toolbar: {
-          buttons: ["bold", "italic", "quote","h2", "h3", "h4", "h5", "anchor" ]
+          buttons: ["bold", "italic", "h2", "h3",]
         }
       },
       hasContent: false,
-        autoLink: true
+      autoLink: true
     };
   },
   props: ["options", "onChange", "prefill", "readOnly"],
@@ -61,9 +60,9 @@ export default {
       return _.extend(this.defaultOptions, this.options);
     },
     editorClass() {
-        return {
-            'has-content': this.hasContent
-        }
+      return {
+        'has-content': this.hasContent
+      }
     }
   },
   components: {
@@ -72,7 +71,7 @@ export default {
     ReadMode
   },
   mounted() {
-      this.addClassToPre();
+    this.addClassToH2();
     if (!this.readOnly) {
       this.createElm();
     }
@@ -94,7 +93,7 @@ export default {
       this.editor.destroy();
     },
     triggerChange() {
-        this.addClassToPre() ;
+      this.addClassToH2() ;
       const content = this.editor.getContent();
       setTimeout(() => {
         if (/<[a-z][\s\S]*>/i.test(content)) {
@@ -109,16 +108,22 @@ export default {
       }
     },
     uploadedCallback(url) {
-      // console.log("callback")
       this.$emit("uploaded", url);
     },
-      addClassToPre() {
-          hljs.configure({useBR: true});
-          document.querySelectorAll('pre').forEach((block) => {
-              hljs.highlightBlock(block);
-              block.setAttribute("spellcheck", "false");
-          });
-      }
+    addClassToH2() {
+      let h2Class = 'h2 h2-small';
+      let h3Class = 'h3 h3-small';
+
+      document.querySelectorAll('h2').forEach((block) => {
+        block.classList = h2Class;
+        console.log('h2');
+      });
+      document.querySelectorAll('h3').forEach((block) => {
+        block.classList = h3Class;
+        console.log('h3');
+
+      });
+    }
   },
   destroyed() {
     this.destroyElm();
