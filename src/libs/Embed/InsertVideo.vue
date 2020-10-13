@@ -39,10 +39,6 @@ export default {
       position: {
         top: '0'
       },
-      urls: {
-        yt: 'https://www.youtube.com/embed/',
-        vimeo: '//player.vimeo.com/video/'
-      },
       isShow: false
     }
   },
@@ -96,11 +92,6 @@ export default {
         this.currentVideo = this.currentLine.querySelector('iframe')
         const currentPos = this.currentVideo.getBoundingClientRect();
         this.window.scrollTo(0, currentPos.top - currentPos.x);
-        this.currentLine.onclick = function () {
-          setTimeout(() => {
-            handlerVm.sizingHandler(this)
-          })
-        }
         this.insert.isShow = false;
       }
     }

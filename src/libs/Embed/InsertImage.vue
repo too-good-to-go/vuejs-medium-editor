@@ -104,7 +104,7 @@ export default {
             this.currentLine = elm;
             this.isShow = true;
             const currentPos = img.getBoundingClientRect();
-            this.position.top = currentPos.top + 'px'
+            this.position.top = currentPos.top + 'px';
             this.$emit('imageClick', {
                 position: this.position,
                 currentLine: this.currentLine,

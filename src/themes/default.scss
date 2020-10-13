@@ -26,6 +26,16 @@
     max-width: 1000px;
     margin: 0 auto;
 }
+.medium-editor-container a.editor-btn{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+@media (min-width: 1000px) {
+    .medium-editor-container a.editor-btn{
+        margin-left: calc((100% - 1000px) /2);
+
+    }
+}
 .medium-editor-container ul,
 .medium-editor-container ol {
     margin-left: auto !important;

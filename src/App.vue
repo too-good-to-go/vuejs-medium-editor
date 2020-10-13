@@ -4,9 +4,9 @@
             v-model="content"
             :prefill="defaultValue"
             :options="options"
-            :onChange="onChange"
-            v-on:uploaded="uploadCallback">
+            @uploaded="uploadCallback">
         </tgtg-editor>
+<!--      :onChange="onChange"-->
     </div>
 </template>
 
@@ -17,13 +17,14 @@ export default {
   data() {
     return {
       content: ``,
-      defaultValue: `<h1>Vuejs <b>Medium Editor</b></h1>
+        defaultValue: `<h1>Vuejs <b>Medium Editor</b></h1>
           <div class="editor-media is-full"><img src="https://source.unsplash.com/yxNURc8he3o/2000x600"></div>
    <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus</p>
           <div class="editor-media is-normal"><img src="https://source.unsplash.com/DKnXlH_r3x4/2000x800"></div>
           <div class="editor-media-description">you how all this mistaken idea of denouncing pleasure</div>
+          <input class="editor-btn" type="button" :link="https://google.com" :newTab="_self" onclick="location.href='https://google.com';" value="Go to Google"/>
           <div class="editor-media">
-                        <iframe src="https://www.youtube.com/embed/g3p3nMiwl7M" frameborder="0" allowfullscreen></iframe>
+          <iframe src="https://www.youtube.com/embed/g3p3nMiwl7M" frameborder="0" allowfullscreen></iframe>
           </div>
           <table>
           <thead>
@@ -67,11 +68,8 @@ no2
     "tgtg-editor": Editor
   },
   methods: {
-    onChange() {
-       // console.log(this.content)
-    },
-    uploadCallback(url) {
-        //console.log("uploaded url", url)
+    uploadCallback() {
+      //console.log('uploaded');
     }
   },
   mounted(){
