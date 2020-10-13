@@ -1,4 +1,3 @@
-@import url('https://github.githubassets.com/assets/gist-embed-4ac6018bcc05457cde2f66d2e7299d11.css');
 
 .medium-editor-container * {
     outline: none;
@@ -26,6 +25,16 @@
 .medium-editor-container blockquote {
     max-width: 1000px;
     margin: 0 auto;
+}
+.medium-editor-container a.editor-btn{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+@media (min-width: 1000px) {
+    .medium-editor-container a.editor-btn{
+        margin-left: calc((100% - 1000px) /2);
+
+    }
 }
 .medium-editor-container ul,
 .medium-editor-container ol {
@@ -58,23 +67,16 @@
 .medium-editor-container .editor.has-content.medium-editor-placeholder::after {
     display: none;
 }
-
-
-.medium-editor-container h1 {
-    font-size: 2.5em;
-    margin-bottom: 0.1em;
-}
-
 .medium-editor-container h2 {
-    font-size: 2.2em;
-    margin-top: 0.2em;
-    margin-bottom: 0.1em;
+    color: #114d4d;
+    font-size: 64px!important;
+    margin-bottom: 8px;
 }
 
 .medium-editor-container h3 {
-    font-size: 1.9em;
-    margin-top: 0.2em;
-    margin-bottom: 0.1em;
+    font-size: 29.6px;
+    margin-top: 16px;
+    margin-bottom: 16px;
 }
 
 .medium-editor-container h4 {
@@ -95,7 +97,9 @@
 }
 
 .medium-editor-container p {
-    margin-bottom: 1em;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    font-size: 19.2px;
 }
 .medium-editor-container ul {
     margin-left: 30px;
@@ -290,19 +294,26 @@ iframe{
     align-items: center;
     justify-content: center;
 }
-.medium-editor-container .editor-image {
+.medium-editor-container .editor-media {
     display: block;
     max-width: 1000px;
     margin: 2rem auto;
 }
 
-.medium-editor-container .editor-image img {
+.medium-editor-container .editor-media img{
     width: 100%;
     height: auto;
     display: block;
 }
+.medium-editor-container .editor-media iframe{
+    height: -webkit-fill-available;
+    height: -moz-available;
+    max-height: 100vh;
+    width: 100%;
+    display: block;
+}
 
-.medium-editor-container .editor-image-description {
+.medium-editor-container .editor-media-description {
     max-width: 1000px;
     margin: 0 auto;
     text-align: center;
@@ -313,7 +324,7 @@ iframe{
     position: relative;
 }
 
-.medium-editor-container .editor-image-description.is-empty::after {
+.medium-editor-container .editor-media-description.is-empty::after {
     content: "Image Description";
     color: #BBB;
     position: absolute;
@@ -324,24 +335,24 @@ iframe{
     z-index: 0;
 }
 
-.medium-editor-container .editor-image + .editor-image-description.is-empty {
+.medium-editor-container .editor-media + .editor-media-description.is-empty {
     display: none;
 }
 
-.medium-editor-container .editor-image.is-focus + .editor-image-description.is-empty {
+.medium-editor-container .editor-media.is-focus + .editor-media-description.is-empty {
     display: block;
 }
 
-.medium-editor-container .editor-image img:hover {
+.medium-editor-container .editor-media img:hover, .medium-editor-container .editor-media iframe:hover  {
     cursor: pointer;
 }
-.medium-editor-container .editor-image.is-expand {
+.medium-editor-container .editor-media.is-expand {
     max-width: 1200px;
 }
-.medium-editor-container .editor-image.is-full {
+.medium-editor-container .editor-media.is-full {
     max-width: 100%;
 }
-.medium-editor-container .editor-image input {
+.medium-editor-container .editor-media input {
     margin: 0 auto;
     border: 0;
     display: block;

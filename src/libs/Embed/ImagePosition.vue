@@ -25,8 +25,7 @@ export default {
     methods: {
         imageSizing(sizing) {
             this.handler.currentSize = sizing
-            this.handler.currentLine.className = 'editor-image ' + sizing
-
+            this.handler.currentLine.className = 'editor-media ' + sizing
             this.$emit('onPositionChange')
         }
     }

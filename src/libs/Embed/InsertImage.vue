@@ -56,7 +56,7 @@ export default {
                 const focused = this.editor.getFocusedElement()
                 if(!focused) return false;
                 
-                const editorImages = focused.getElementsByClassName('editor-image')
+                const editorImages = focused.getElementsByClassName('editor-media')
                 _.map(editorImages, (elm) => {
                     // Set Onclick to Show Image Size Handler
                     elm.onclick = function() {
@@ -73,10 +73,10 @@ export default {
                 const handlerVm = this
                 this.editorRef.focus()
                 this.editor.selectElement(this.insert.focusLine)
-                this.editor.pasteHTML(`<div class="editor-image">
+                this.editor.pasteHTML(`<div class="editor-media">
                         <img src="${url}" />
                     </div>
-                    <div class="editor-image-description"><br></div>
+                    <div class="editor-media-description"><br></div>
                     <br />`, { cleanAttrs: [], cleanTags: [], unwrapTags: []})
                 this.currentLine = this.editor.getSelectedParentElement().previousElementSibling.previousElementSibling
                 this.currentImg = this.currentLine.querySelector('img')
@@ -104,7 +104,7 @@ export default {
             this.currentLine = elm;
             this.isShow = true;
             const currentPos = img.getBoundingClientRect();
-            this.position.top = currentPos.top + 'px'
+            this.position.top = currentPos.top + 'px';
             this.$emit('imageClick', {
                 position: this.position,
                 currentLine: this.currentLine,
